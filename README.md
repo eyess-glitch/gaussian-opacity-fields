@@ -84,6 +84,10 @@ python scripts/run_tnt.py
 python scripts/run_dtu.py
 ```
 
+
+# Personal contribution 
+This repo contains the modified extract_mesh.py file which contains a strategy impleemnted for selecting a sub-obtimal subset of images during the compation of opacities through a IoU based pruning-method.
+
 # Custom Dataset
 We use the same data format from 3DGS, please follow [here](https://github.com/graphdeco-inria/gaussian-splatting?tab=readme-ov-file#processing-your-own-scenes) to prepare the your dataset. Then you can train your model and extract a mesh (we use the Tanks and Temples dataset for example)
 ```
