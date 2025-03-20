@@ -85,7 +85,7 @@ python scripts/run_dtu.py
 ```
 
 
-# Personal contribution 
+# Personal contribution (eyess-glitch)
 This repo contains the modified extract_mesh.py file which contains a strategy impleemnted for selecting a sub-obtimal subset of images during the compation of opacities through a IoU based pruning-method.
 
 # Custom Dataset
