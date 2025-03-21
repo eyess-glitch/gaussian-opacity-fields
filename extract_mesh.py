@@ -171,20 +171,23 @@ def align_images(img1, img2, matcher):
     return aligned_img
 
 
-
 def get_most_influential_images(input_folder, matcher, iou_threshold=0.5):
     image_files = sorted(os.listdir(input_folder))
     most_influential_images = []
-
     i = 0
+    
+    found_image = True
+
     while i < len(image_files): 
+        if not found_image:
+            break
+        
+        found_image = False
+        most_influential_images.append(image_files[i])
+
         ref_image_path = os.path.join(input_folder, image_files[i])
         ref_image = Image.open(ref_image_path).convert('L')  # Converte in scala di grigi
         ref_array = np.array(ref_image)
-
-        min_iou = float('inf')
-        min_iou_image_name = None
-
         
         for j in range(i + 1, len(image_files)):
             current_image_path = os.path.join(input_folder, image_files[j])
@@ -195,15 +198,9 @@ def get_most_influential_images(input_folder, matcher, iou_threshold=0.5):
             iou = calculate_iou(ref_array, aligned_image)
 
             if iou <= iou_threshold:
-                min_iou_image_name = image_files[j]
-                min_iou = iou
-                i = j + 1  
+                i = j 
+                found_image = True
                 break
-
-        if min_iou_image_name is None:
-            break
-
-        most_influential_images.append(min_iou_image_name)
 
     return most_influential_images
 
