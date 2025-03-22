@@ -86,7 +86,18 @@ python scripts/run_dtu.py
 
 
 # Personal contribution (eyess-glitch)
-This repo contains the modified extract_mesh.py file which contains a strategy impleemnted for selecting a sub-obtimal subset of images during the compation of opacities through a IoU based pruning-method.
+This repo contains the modified extract_mesh.py file which contains a strategy implemented for selecting a sub-obtimal subset of images during the compation of opacities through a IoU based pruning-method.
+
+One of the fundamental steps in GoF is computing the opacity values of points within the scene. Opacity directly influences the scene geometry as it is converted into a Signed Distance Function (SDF).  Given a set of views \( V_1, V_2, \dots, V_K \), temporally ordered so that \( V_i \) was captured after \( V_{i-1} \) and before \( V_{i+1} \), we assume that all images were acquired under the same conditions, ensuring constant environmental factors such as lighting, and that the scene remains static.  Under these assumptions, it is highly likely that there exist pairs of images \( (V_i, V_j) \) with \( j > i \) that exhibit significant overlap, covering nearly the same portion of the scene with only minor pixel variations. In this scenario, the computed opacity values for \( V_i \) and \( V_j \) will be nearly identical, leading to redundant calculations.  To minimize redundancy, a subset of views with minimal overlap is selected following these steps:  
+
+1. **Initial Selection:** An initial reference image \( V_i \) is chosen, starting with \( V_1 \).  
+2. **Feature Extraction:** Each subsequent image \( V_j \) (where \( j > i \)) is compared with \( V_i \). ORB features and keypoints are extracted, as ORB provides a good balance between computational efficiency and feature representativeness.  
+3. **Homography Computation:** A homography is computed to align \( V_j \) with \( V_i \).  
+4. **IoU Calculation:** The Intersection over Union (IoU) between the aligned images is calculated as:  
+
+   ```math
+   \text{IoU}(V_i, V_j) = \frac{|V_i \cap V_j|}{|V_i \cup V_j|}
+
 
 # Custom Dataset
 We use the same data format from 3DGS, please follow [here](https://github.com/graphdeco-inria/gaussian-splatting?tab=readme-ov-file#processing-your-own-scenes) to prepare the your dataset. Then you can train your model and extract a mesh (we use the Tanks and Temples dataset for example)
