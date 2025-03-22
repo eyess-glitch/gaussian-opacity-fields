@@ -98,6 +98,10 @@ One of the fundamental steps in GoF is computing the opacity values of points wi
    ```math
    \text{IoU}(V_i, V_j) = \frac{|V_i \cap V_j|}{|V_i \cup V_j|}
 
+5. **Filtering:**  
+- If the **IoU exceeds** a predefined threshold, **\( V_j \) is discarded**.  
+- Otherwise, **\( V_j \) is retained** and becomes the new reference image **\( V_i \)**, continuing the comparison process with the remaining images.  
+ 
 
 # Custom Dataset
 We use the same data format from 3DGS, please follow [here](https://github.com/graphdeco-inria/gaussian-splatting?tab=readme-ov-file#processing-your-own-scenes) to prepare the your dataset. Then you can train your model and extract a mesh (we use the Tanks and Temples dataset for example)
