@@ -104,7 +104,7 @@ One of the fundamental steps in GoF is computing the opacity values of points wi
 
 The generated mesh produced by the model with the proposed IoU procedure was tested on the TNT-dataset, evaluating metrics such as Precision and Recall, for several IoU thresholds. 
 
-![Metrics](results.png)
+![Metrics](results.PNG)
 
  
 
