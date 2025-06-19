@@ -100,7 +100,8 @@ One of the fundamental steps in GoF is computing the opacity values of points wi
 
 5. **Filtering:**  
 - If the **IoU exceeds** a predefined threshold, **\( V_j \) is discarded**.  
-- Otherwise, **\( V_j \) is retained** and becomes the new reference image **\( V_i \)**, continuing the comparison process with the remaining images.  
+- Otherwise, **\( V_j \) is retained** and becomes the new reference image **\( V_i \)**, continuing the comparison process with the remaining images. The generated mesh produced by the model with the proposed IoU procedure was tested on the TNT-dataset, evaluating metrics such as Precision and Recall, for several IoU thresholds. 
+
  
 
 # Custom Dataset
